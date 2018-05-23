@@ -1,0 +1,70 @@
+template:
+  name: BasicWebforMendixQFEWK
+  description: "Deploy your Mendix Lowcode App from S3 Bucket to IBM Cloud BasicWebforMendixQFEWK app."
+  version: '2'
+  required:
+    - repo
+    - build
+    - deploy
+
+toolchain:
+  name: BasicWebforMendixQFEWK
+
+# Github repos
+repo:
+  service_id: hostedgit
+  parameters:
+    repo_url: "{{#zip_url}}{{zip_url}}{{/zip_url}}{{^zip_url}}{{repository}}{{/zip_url}}"
+    repo_name: "{{toolchain.name}}"
+    type: clone
+    has_issues: false
+    enable_traceability: true
+
+# Pipelines
+build:
+  service_id: pipeline
+  parameters:
+    name: "{{name}}"
+    ui-pipeline: true
+    configuration:
+     content: $file(pipeline.yml)
+     env:
+      REPO: "repo"
+      CF_APP: "{{deploy.parameters.app-name}}"
+      CF_SPACE: "{{deploy.parameters.dev-space}}"
+      CF_ORGANIZATION: "{{deploy.parameters.dev-organization}}"
+      REGION_ID: "{{deploy.parameters.dev-region}}"
+      MDA_URL: https://s3.amazonaws.com/mendix-test-bucket/default.mda
+      MENDIX_TEMPLATE: 94a763f5-864c-4e43-b992-056694479974
+      CHART_NAME: "{{deploy.parameters.chart-name}}"
+      KUBE_CLUSTER_NAME: "{{deploy.parameters.kube-cluster-name}}"
+      CLUSTER_NAMESPACE: "{{deploy.parameters.cluster-namespace}}"
+      API_KEY: "{{deploy.parameters.api-key}}"
+      IMAGE_PULL_SECRET_NAME: "{{deploy.parameters.image-pull-secret-name}}"
+      IMAGE_REGISTRY_TOKEN: "{{deploy.parameters.image-registry-token}}"
+      REGISTRY_NAMESPACE: "{{deploy.parameters.registry-namespace}}"
+     execute: true
+    services: ["repo"]
+  hidden: ["form"]
+
+#Web IDE
+webide:
+  service_id: orion
+
+#Deployment
+deploy:
+  schema:
+    $ref: deploy.json
+  service-category: pipeline
+  parameters:
+    app-name: BasicWebforMendixQFEWK
+    dev-space: "{{space}}"
+    dev-organization: "{{organization}}"
+    dev-region: "{{region}}"
+    chart-name: mendixproject
+    kube-cluster-name: 
+    cluster-namespace: default
+    api-key: "{{api-key}}"
+    image-pull-secret-name: "{{image-pull-secret-name}}"
+    image-registry-token: "{{image-registry-token}}"
+    registry-namespace: my_registry_ns
