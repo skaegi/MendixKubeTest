@@ -1,1 +1,1 @@
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://console.bluemix.net/devops/setup/deploy/?repository=https://github.com/alembe/MendixKubeTest&repository_token=8b19301a3a0df1f37cecd60e9e22134dbb88e021&env_id=ibm:yp:us-south)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://console.bluemix.net/devops/setup/deploy/?repository=https://github.com/alembe/MendixKubeTest&autocreate=true&api_key=W9Jlk-8me-GJrM9T_NJXRSksew-yVh6AKdS5BorxeNDt&repository_token=8b19301a3a0df1f37cecd60e9e22134dbb88e021&env_id=ibm:yp:us-south)
