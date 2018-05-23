@@ -1,0 +1,41 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: "basicwebformendixqfewk-deployment"
+  labels:
+    app: mendix-k8s
+spec:
+  serviceName: mendix-k8s-ss
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mendix-k8s
+  template:
+    metadata:
+      labels:
+        app: mendix-k8s
+    spec:
+      containers:
+        - name: "{{  .Chart.Name  }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 80
+          env:
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: mendix-app-secrets
+                    key: admin-password
+            - name: DATABASE_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: mendix-app-secrets
+                  key: db-endpoint
+            - name: M2EE_PASSWORD
+              value: app_admin_password
+          livenessProbe:
+              httpGet:
+                  path: /
+                  port: 80
+              initialDelaySeconds: 15
+              periodSeconds: 20
