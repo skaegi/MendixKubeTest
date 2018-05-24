@@ -17,7 +17,7 @@ repo:
     repo_url: "{{#zip_url}}{{zip_url}}{{/zip_url}}{{^zip_url}}{{repository}}{{/zip_url}}"
     repo_name: "{{toolchain.name}}"
     type: clone
-    has_issues: false
+    has_issues: true
     enable_traceability: true
 
 # Pipelines
@@ -27,24 +27,23 @@ build:
     name: "{{name}}"
     ui-pipeline: true
     configuration:
-     content:
-       $text: pipeline.yml
-     env:
-      REPO: "repo"
-      CF_APP: "{{deploy.parameters.app-name}}"
-      CF_SPACE: "{{deploy.parameters.dev-space}}"
-      CF_ORGANIZATION: "{{deploy.parameters.dev-organization}}"
-      REGION_ID: "{{deploy.parameters.dev-region}}"
-      MDA_URL: https://s3.amazonaws.com/mendix-test-bucket/default.mda
-      MENDIX_TEMPLATE: 94a763f5-864c-4e43-b992-056694479974
-      CHART_NAME: "{{deploy.parameters.chart-name}}"
-      KUBE_CLUSTER_NAME: "{{deploy.parameters.kube-cluster-name}}"
-      CLUSTER_NAMESPACE: "{{deploy.parameters.cluster-namespace}}"
-      API_KEY: "{{deploy.parameters.api-key}}"
-      IMAGE_PULL_SECRET_NAME: "{{deploy.parameters.image-pull-secret-name}}"
-      IMAGE_REGISTRY_TOKEN: "{{deploy.parameters.image-registry-token}}"
-      REGISTRY_NAMESPACE: "{{deploy.parameters.registry-namespace}}"
-     execute: true
+      content: $file(pipeline.yml)
+      env:
+        REPO: "repo"
+        CF_APP: "{{deploy.parameters.app-name}}"
+        CF_SPACE: "{{deploy.parameters.dev-space}}"
+        CF_ORGANIZATION: "{{deploy.parameters.dev-organization}}"
+        REGION_ID: "{{deploy.parameters.dev-region}}"
+        MDA_URL: https://s3.amazonaws.com/mendix-test-bucket/default.mda
+        MENDIX_TEMPLATE: 94a763f5-864c-4e43-b992-056694479974
+        CHART_NAME: "{{deploy.parameters.chart-name}}"
+        KUBE_CLUSTER_NAME: "{{deploy.parameters.kube-cluster-name}}"
+        CLUSTER_NAMESPACE: "{{deploy.parameters.cluster-namespace}}"
+        API_KEY: "{{deploy.parameters.api-key}}"
+        IMAGE_PULL_SECRET_NAME: "{{deploy.parameters.image-pull-secret-name}}"
+        IMAGE_REGISTRY_TOKEN: "{{deploy.parameters.image-registry-token}}"
+        REGISTRY_NAMESPACE: "{{deploy.parameters.registry-namespace}}"
+      execute: true
     services: ["repo"]
   hidden: ["form"]
 
@@ -62,7 +61,7 @@ deploy:
     dev-space: "{{space}}"
     dev-organization: "{{organization}}"
     dev-region: "{{region}}"
-    chart-name: mendixproject
+    chart-name: basicwebformendixqfewk
     kube-cluster-name: 
     cluster-namespace: default
     api-key: "{{api-key}}"
