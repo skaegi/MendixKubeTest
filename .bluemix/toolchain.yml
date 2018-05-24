@@ -26,7 +26,8 @@ build:
     name: "{{name}}"
     ui-pipeline: true
     configuration:
-      content: $file(pipeline.yml)
+      content:
+        $text: pipeline.yml
       env:
         REPO: "repo"
         REGION_ID: "{{deploy.parameters.dev-region}}"
@@ -42,10 +43,6 @@ build:
       execute: true
     services: ["repo"]
   hidden: ["form"]
-
-#Web IDE
-webide:
-  service_id: orion
 
 #Deployment
 deploy:
