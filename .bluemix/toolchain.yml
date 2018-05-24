@@ -5,7 +5,6 @@ template:
   required:
     - repo
     - build
-    - deploy
 
 toolchain:
   name: BasicWebforMendixQFEWK
@@ -30,9 +29,6 @@ build:
       content: $file(pipeline.yml)
       env:
         REPO: "repo"
-        CF_APP: "{{deploy.parameters.app-name}}"
-        CF_SPACE: "{{deploy.parameters.dev-space}}"
-        CF_ORGANIZATION: "{{deploy.parameters.dev-organization}}"
         REGION_ID: "{{deploy.parameters.dev-region}}"
         MDA_URL: https://s3.amazonaws.com/mendix-test-bucket/default.mda
         MENDIX_TEMPLATE: 94a763f5-864c-4e43-b992-056694479974
@@ -57,10 +53,6 @@ deploy:
     $ref: deploy.json
   service-category: pipeline
   parameters:
-    app-name: BasicWebforMendixQFEWK
-    dev-space: "{{space}}"
-    dev-organization: "{{organization}}"
-    dev-region: "{{region}}"
     chart-name: basicwebformendixqfewk
     kube-cluster-name: 
     cluster-namespace: default
