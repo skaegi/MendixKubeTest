@@ -65,7 +65,7 @@
          }
       },
       {  
-         "type":"text",
+         "type":"select",
          "readonly":false,
          "title":"Kubernetes Cluster Name",
          "key":"kube-cluster-name"
