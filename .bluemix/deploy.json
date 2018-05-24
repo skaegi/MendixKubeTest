@@ -34,16 +34,19 @@
       "mda-url":{  
          "description":"Mendix MDA file location",
          "type":"string"
+      },
+      "cluster-namespace":{
+	type":"string"
+      },
+      "registry-namespace":{
+	type":"string"
       }
    },
    "required":[  
       "api-key",
       "dev-region",
       "kube-cluster-name",
-      "image-registry-token",
-      "image-pull-secret-name",
-      "mda-url",
-      "mendix-template"
+      "image-registry-token"
    ],
    "form":[  
       {  
