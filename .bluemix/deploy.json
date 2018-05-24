@@ -10,8 +10,7 @@
       },
       "dev-region": {
 	"description": "The IBM Cloud region",
-        "type": "string",
-	     "disabled": false
+        "type": "string"
       },
       "kube-cluster-name":{  
          "description":"Your cluster name. Retrieve it with [bx cs clusters] or via the console at https://console.bluemix.net/containers-kubernetes/home/clusters.",
@@ -61,9 +60,7 @@
          "type": "select",
          "key": "dev-region",
          "readonly": true,
-         "title": {
-            "$ref": "#/messages/region"
-         }
+         "title": "IBM Cloud Region
       },
       {  
          "type":"text",
