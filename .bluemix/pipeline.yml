@@ -72,11 +72,8 @@ stages:
     deploy_type: kubernetes
     target:
       region_id: ${REGION_ID}
-      organization: ${CF_ORGANIZATION}
-      space: ${CF_SPACE}
-      application: ${CF_APP}
       api_key: ${API_KEY}
-      kubernetes_cluster: ${PIPELINE_KUBERNETES_CLUSTER_NAME}
+      kubernetes_cluster: ${KUBE_CLUSTER_NAME}
     script: |-
       #!/bin/bash
       echo "source the kube_deploy script to run in current shell"
