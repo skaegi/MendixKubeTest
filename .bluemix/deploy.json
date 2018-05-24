@@ -8,28 +8,23 @@
          "description":"The IBM Cloud API key is used to access the IBM Container Service API and interact with the cluster. You can obtain your API key with 'bx iam api-key-create' or via the console at https://console.bluemix.net/iam/#/apikeys by clicking **Create API key** (Each API key only can be viewed once).",
          "type":"string"
       },
-      "image-registry-token":{  
-         "description":"Container Registry access token. Retrievable via [bx cr tokens]",
-         "type":"string"
+      "dev-region": {
+	     "description": {
+          "$ref": "#/messages/deploy.regionDescription"
+        },
+        "type": "string",
+	     "disabled": false
       },
       "kube-cluster-name":{  
          "description":"Your cluster name. Retrieve it with [bx cs clusters] or via the console at https://console.bluemix.net/containers-kubernetes/home/clusters.",
          "type":"string"
-      },
-      "dev-region":{  
-         "description":"The IBM Cloud region",
+      },      
+      "image-registry-token":{  
+         "description":"Container Registry access token. Retrievable via [bx cr tokens]",
          "type":"string"
       },
-      "dev-organization":{  
-         "description":"The IBM Cloud org",
-         "type":"string"
-      },
-      "dev-space":{  
-         "description":"The IBM Cloud space",
-         "type":"string"
-      },
-      "app-name":{  
-         "description":"app name",
+      "image-pull-secret-name":{  
+         "description":"Image Pull Secret Name",
          "type":"string"
       },
       "mendix-template":{  
@@ -42,16 +37,13 @@
       }
    },
    "required":[  
-      "dev-region",
-      "dev-organization",
-      "dev-space",
-      "mda-url",
-      "mendix-template",
-      "app-name",
       "api-key",
+      "dev-region",
+      "kube-cluster-name"
       "image-registry-token",
       "image-pull-secret-name",
-      "kube-cluster-name"
+      "mda-url",
+      "mendix-template"
    ],
    "form":[  
       {  
@@ -64,11 +56,13 @@
          "title":"IBM Cloud API Key",
          "key":"api-key"
       },
-      {  
-         "type":"password",
-         "readonly":false,
-         "title":"Container Registry access token",
-         "key":"image-registry-token"
+      {
+         "type": "select",
+         "key": "dev-region",
+         "readonly": true,
+         "title": {
+            "$ref": "#/messages/region"
+         }
       },
       {  
          "type":"text",
@@ -77,46 +71,10 @@
          "key":"kube-cluster-name"
       },
       {  
-         "type":"text",
+         "type":"password",
          "readonly":false,
-         "title":"App Name",
-         "key":"app-name"
-      },
-      {  
-         "type":"table",
-         "columnCount":3,
-         "widths":[  
-            "28%",
-            "28%",
-            "28%"
-         ],
-         "items":[  
-            {  
-               "type":"label",
-               "title":"Region"
-            },
-            {  
-               "type":"label",
-               "title":"Organization"
-            },
-            {  
-               "type":"label",
-               "title":"Space"
-            },
-            {  
-               "type":"select",
-               "key":"dev-region"
-            },
-            {  
-               "type":"select",
-               "key":"dev-organization"
-            },
-            {  
-               "type":"select",
-               "key":"dev-space",
-               "readonly":false
-            }
-         ]
+         "title":"Container Registry access token",
+         "key":"image-registry-token"
       }
    ]
 }
