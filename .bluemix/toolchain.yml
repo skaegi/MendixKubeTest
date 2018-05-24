@@ -27,7 +27,8 @@ build:
     name: "{{name}}"
     ui-pipeline: true
     configuration:
-     content: $file(pipeline.yml)
+     content:
+       $text: pipeline.yml
      env:
       REPO: "repo"
       CF_APP: "{{deploy.parameters.app-name}}"
