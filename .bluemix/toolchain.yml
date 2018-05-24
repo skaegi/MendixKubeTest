@@ -53,10 +53,11 @@ deploy:
     $ref: deploy.json
   service-category: pipeline
   parameters:
-    chart-name: basicwebformendixqfewk
-    kube-cluster-name: 
-    cluster-namespace: default
     api-key: "{{api-key}}"
+    dev-region: {{region}}
+    chart-name: basicwebformendixqfewk
+    kube-cluster-name: mycluster
+    cluster-namespace: default
     image-pull-secret-name: "{{image-pull-secret-name}}"
     image-registry-token: "{{image-registry-token}}"
     registry-namespace: my_registry_ns
