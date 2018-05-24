@@ -60,7 +60,7 @@
          "type": "select",
          "key": "dev-region",
          "readonly": true,
-         "title": "IBM Cloud Region
+         "title": "IBM Cloud Region"
       },
       {  
          "type":"text",
