@@ -54,7 +54,7 @@ deploy:
   service-category: pipeline
   parameters:
     api-key: "{{api-key}}"
-    dev-region: {{region}}
+    dev-region: "{{region}}"
     chart-name: basicwebformendixqfewk
     kube-cluster-name: mycluster
     cluster-namespace: default
