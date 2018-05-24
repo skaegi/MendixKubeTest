@@ -9,9 +9,7 @@
          "type":"string"
       },
       "dev-region": {
-	     "description": {
-          "$ref": "#/messages/deploy.regionDescription"
-        },
+	"description": "The IBM Cloud region",
         "type": "string",
 	     "disabled": false
       },
@@ -36,10 +34,10 @@
          "type":"string"
       },
       "cluster-namespace":{
-	type":"string"
+	"type":"string"
       },
       "registry-namespace":{
-	type":"string"
+	"type":"string"
       }
    },
    "required":[  
