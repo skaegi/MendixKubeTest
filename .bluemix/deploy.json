@@ -39,7 +39,7 @@
    "required":[  
       "api-key",
       "dev-region",
-      "kube-cluster-name"
+      "kube-cluster-name",
       "image-registry-token",
       "image-pull-secret-name",
       "mda-url",
